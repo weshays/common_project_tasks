@@ -1,0 +1,15 @@
+app_vars: &app_vars
+  rebuild_database: true
+  load_fixtures: true
+  fixtures: 'states,users,permissions'
+    
+development:
+  <<: *app_vars
+
+test:
+  <<: *app_vars
+
+production:
+  rebuild_database: false
+  load_fixtures: false
+  <<: *app_vars

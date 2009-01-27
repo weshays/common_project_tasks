@@ -12,17 +12,17 @@ Gem::Specification.new do |s|
   s.authors = ['Wes Hays', 'John Dell']
   s.email = 'gems@gbdev.com'
 
-  s.summary = 'Rails gem/plugin to load common project tasks'
-  s.description = 'Rails gem/plugin to load common project tasks'
+  s.summary = 'Rails gem/plugin to load common project tasks.'
+  s.description = 'Rails gem/plugin to load common project tasks.'
 
   s.add_dependency('rake','>= 0.8.3')
 
-  s.require_path = "tasks"
+  s.require_path = 'lib/'
   
   s.files = ['LICENSE',
              'README',
-             'Rakefile',
-             'tasks/app.rake']
+             'lib/common_project_tasks.rb',
+             'lib/common_project_tasks/app.rake']
              
   s.has_rdoc = true
   s.extra_rdoc_files = %w{README LICENSE}

@@ -1,0 +1,41 @@
+CommonProjectTasks
+===============
+
+Rails gem/plugin to load common project tasks.
+
+
+Once the plugin is installed add the following to {RAILS_ROOT}/Rakefile
+
+require 'common_project_tasks'
+
+
+
+Each project will need a {RAILS_ROOT}/config/app_vars.yml file.  Each environment list in the database.yml
+file should also be listed in app_vars.yml.  The supported attributes are:
+
+* rebuild_database  [true/false]
+* load_fixtures [true/false]
+* fixtures [fixture1,fixture2,fixture3]  (specify in order you want them to load)
+ 
+
+The app_vars.yml file should look something like. 
+Note: This example can be found in {COMMON_PROJECT_TASKS_PLUGIN}/examples/app_vars.yml.
+
+###############################################
+app_vars: &app_vars
+  rebuild_database: true
+  load_fixtures: true
+  fixtures: 'states,users,permissions'
+
+development:
+  <<: *app_vars
+
+test:
+  <<: *app_vars
+
+production:
+  rebuild_database: false
+  load_fixtures: false
+  <<: *app_vars
+
+###############################################
