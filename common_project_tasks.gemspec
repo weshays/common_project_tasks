@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   PROJECT_GEM = 'common_project_tasks'
-  PROJECT_GEM_VERSION = '0.1.1'  
+  PROJECT_GEM_VERSION = '0.1.2'  
   
   s.name = PROJECT_GEM
   s.version = PROJECT_GEM_VERSION
@@ -22,7 +22,8 @@ Gem::Specification.new do |s|
   s.files = ['LICENSE',
              'README',
              'lib/common_project_tasks.rb',
-             'lib/common_project_tasks/app.rake']
+             'lib/common_project_tasks/app.rake',
+             'examples/app_vars.yml']
              
   s.has_rdoc = true
   s.extra_rdoc_files = %w{README LICENSE}
