@@ -2,6 +2,7 @@ app_vars: &app_vars
   rebuild_database: true
   load_fixtures: true
   fixtures: 'states,users,permissions'
+  # post_fixture_tasks: some_rake_task_to_run
     
 development:
   <<: *app_vars

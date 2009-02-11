@@ -24,6 +24,14 @@ namespace :app do
       ENV['FIXTURES'] = app_vars[ENV['RAILS_ENV']]['fixtures']
       Rake::Task['spec:db:fixtures:load'].invoke
     end
+
+    unless app_vars[ENV['RAILS_ENV']]['post_fixture_tasks'].nil?
+      #begin
+        Rake::Task[app_vars[ENV['RAILS_ENV']]['post_fixture_tasks']].invoke
+      #rescue
+        # Fail quietly if the task does not exist
+      #end
+    end    
   end
   
   ##############################################
