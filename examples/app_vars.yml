@@ -3,11 +3,14 @@ app_vars: &app_vars
   load_fixtures: true
   fixtures: 'states,users,permissions'
   # post_fixture_tasks: some_rake_task_to_run
+  # load_sql_file: 'db/sql/roar_production_data_only-2008-07-25.sql'
     
 development:
+  load_sql_file: '/db/sql/roar_production_data_only-2008-07-25.sql'
   <<: *app_vars
 
 test:
+  load_sql_file: '/db/sql/roar_production_data_only-2008-07-25.sql'
   <<: *app_vars
 
 production:

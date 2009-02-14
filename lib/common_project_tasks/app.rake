@@ -26,12 +26,34 @@ namespace :app do
     end
 
     unless app_vars[ENV['RAILS_ENV']]['post_fixture_tasks'].nil?
-      #begin
+      begin
         Rake::Task[app_vars[ENV['RAILS_ENV']]['post_fixture_tasks']].invoke
-      #rescue
+      rescue
         # Fail quietly if the task does not exist
-      #end
+      end
     end    
+    
+    unless app_vars[ENV['RAILS_ENV']]['load_sql_file'].nil?
+      #begin
+        path_to_sql_file = app_vars[ENV['RAILS_ENV']]['load_sql_file']   
+        sql = File.open(path_to_sql_file).read
+        sql.split(';').each do |sql_statement|
+          ActiveRecord::Base.connection.execute(sql_statement)
+        end
+        
+        
+                 
+      #   # db = database[ENV['RAILS_ENV']]['database']
+      #   # username = database[ENV['RAILS_ENV']]['username']
+      #   # password = database[ENV['RAILS_ENV']]['password']
+      #   # ENV['PGUSR'] = username
+      #   # ENV['PGPWD'] = password
+      #   # system("psql -d #{db} < #{path_to_sql_file}")
+      # rescue
+      #   # Fail quietly if something goes wrong
+      # end
+    end    
+    
   end
   
   ##############################################
