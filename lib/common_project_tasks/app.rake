@@ -10,15 +10,19 @@ namespace :app do
     database = YAML::load(ERB.new(IO.read(file)).result)    
 
     # update git submodules in case new ones were added
-    system('git submodule init')
-    system('git submodule update')
+    if !app_vars[ENV['RAILS_ENV']]['update_git_submodules'].nil? and app_vars[ENV['RAILS_ENV']]['update_git_submodules'] == true
+      system('git submodule init')
+      system('git submodule update')
+    end
     
     if !app_vars[ENV['RAILS_ENV']]['rebuild_database'].nil? and app_vars[ENV['RAILS_ENV']]['rebuild_database'] == true
       Rake::Task['db:drop'].invoke
       Rake::Task['db:create'].invoke    
     end
     
-    Rake::Task['db:migrate'].invoke
+    if !app_vars[ENV['RAILS_ENV']]['run_db_migrate'].nil? and app_vars[ENV['RAILS_ENV']]['run_db_migrate'] == true
+      Rake::Task['db:migrate'].invoke
+    end
     
     if !app_vars[ENV['RAILS_ENV']]['load_fixtures'].nil? and app_vars[ENV['RAILS_ENV']]['load_fixtures'] == true
       ENV['FIXTURES'] = app_vars[ENV['RAILS_ENV']]['fixtures']
