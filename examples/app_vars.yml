@@ -6,6 +6,9 @@ app_vars: &app_vars
   # post_fixture_tasks: some_rake_task_to_run
   # load_sql_file: 'db/sql/roar_production_data_only-2008-07-25.sql'
   # update_git_submodules: false
+  
+  # A way of runing migrations after the sql file has loaded.
+  #run_post_db_migrate: true
     
 development:
   load_sql_file: '/db/sql/roar_production_data_only-2008-07-25.sql'

@@ -51,6 +51,10 @@ namespace :app do
       end
     end    
     
+    if !app_vars[ENV['RAILS_ENV']]['run_post_db_migrate'].nil? and app_vars[ENV['RAILS_ENV']]['run_post_db_migrate'] == true
+      Rake::Task['db:migrate'].invoke
+    end    
+    
   end
   
   ##############################################
