@@ -3,10 +3,10 @@ namespace :app do
   task :setup do
     ENV['RAILS_ENV'] = 'development' unless ENV.include?('RAILS_ENV')
     
-    file = "#{RAILS_ROOT}/config/app_vars.yml"
+    file = "#{Rails.root.to_s}/config/app_vars.yml"
     app_vars = YAML::load(ERB.new(IO.read(file)).result)
     
-    file = "#{RAILS_ROOT}/config/database.yml"
+    file = "#{Rails.root.to_s}/config/database.yml"
     database = YAML::load(ERB.new(IO.read(file)).result)    
 
     # update git submodules in case new ones were added
